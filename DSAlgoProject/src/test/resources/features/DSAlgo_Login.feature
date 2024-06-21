@@ -1,7 +1,7 @@
 @LoginFunctionality
 Feature: DSAlgo Portal Login Verification
 
-  @TC_001 @Failed
+  @TC_001
   Scenario Outline: Sign In successful with valid credentials
     Given user navigates to Home page
     And user clicks on Sign in link

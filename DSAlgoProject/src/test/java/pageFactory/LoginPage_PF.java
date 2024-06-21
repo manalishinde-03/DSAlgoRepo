@@ -60,34 +60,17 @@ public class LoginPage_PF {
 	}
 	
 	public void validateErrorMsg(String errorMessage) {
-		
 		  String actualMsg = text_errorMsg.getText();
 		  
 		  assertEquals(actualMsg,errorMessage);
 		  System.out.println("Error Displayed!");
 	}
-	
 
 	public void validateToolTipErrorMsg(String errorMessage) {
 		  
-		  // Create action class object
-		 // Actions builder=new Actions(driver);
-
-		  // find the tooltip xpath
-		  WebElement tooltip= txt_username_login;
-		  // Mouse hover to that text message
-		  //builder.moveToElement(tooltip).build().perform();
-		  // Extract text from tooltip
-			/*
-			 * String tooltip_msg=tooltip.getAttribute("required");
-			 * 
-			 * // Print the tooltip message just for our refrences
-			 * System.out.println("Tooltip message is "+tooltip_msg);
-			 * assertEquals(tooltip_msg,errorMessage);
-			 */
-		  
-		  isAttribtuePresent(tooltip, "required");
-		  System.out.println("Attribute in webelement >>>>"+tooltip.getAttribute("required"));
+		  WebElement activeElement = driver.switchTo().activeElement();
+		  String messageStr = activeElement.getAttribute("validationMessage");
+		  System.out.println("Actual message appeared on screen: " + messageStr);
 	}
 		   
 		 //to verify tooltip message   
