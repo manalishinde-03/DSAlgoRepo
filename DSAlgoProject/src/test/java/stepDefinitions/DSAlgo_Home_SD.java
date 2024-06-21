@@ -14,12 +14,12 @@ import org.testng.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pageFactory.HomePage_PF;
+import pages.HomePage;
 
 public class DSAlgo_Home_SD {
 	
 	WebDriver driver = new ChromeDriver();
-	HomePage_PF homePagePF;
+	HomePage homePagePF;
 	
 	@Given("user launches the DSAlgo portal URL")
 	public void user_launches_the_ds_algo_portal_url() {
@@ -31,13 +31,13 @@ public class DSAlgo_Home_SD {
 
 	@Given("user clicks on Get Started button")
 	public void user_clicks_on_get_started_button() {
-		homePagePF = new HomePage_PF(driver);
+		homePagePF = new HomePage(driver);
 		homePagePF.clickGetStartedBtn();
 	}
 
 	@Then("user landed on the Home page")
 	public void user_landed_on_the_home_page() {
-		homePagePF = new HomePage_PF(driver);
+		homePagePF = new HomePage(driver);
 		homePagePF.validateUserLandedOnHomePage();
 	}
 

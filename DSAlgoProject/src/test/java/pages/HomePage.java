@@ -1,4 +1,4 @@
-package pageFactory;
+package pages;
 
 import static org.testng.Assert.assertEquals;
 
@@ -13,7 +13,7 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class HomePage_PF {
+public class HomePage {
 	
 	WebDriver driver;
 	
@@ -45,9 +45,11 @@ public class HomePage_PF {
 	WebElement loginForm;
 	@FindBy(xpath ="//div[@class='alert alert-primary']" )
 	WebElement text_UserNotLoggedInWarning;
+	@FindBy(xpath ="//div[@class='alert alert-primary']" )
+	WebElement text_registerSuccessMsg;
 	
 	
-	public HomePage_PF(WebDriver driver) {
+	public HomePage(WebDriver driver) {
 		
 		this.driver=driver;
 		PageFactory.initElements(driver,this);
@@ -58,6 +60,13 @@ public class HomePage_PF {
 		  
 		  assertEquals(actualMsg,message);
 		  System.out.println("Login Successful!");
+	}
+	
+	public void validateMsgAfterRegistration(String message) {
+		String actualMsg = text_registerSuccessMsg.getText();
+		  
+		  assertEquals(actualMsg,message);
+		  System.out.println("Registration Successful!");
 	}
 	
 	public void validateUserLandedOnHomePage() {
@@ -107,7 +116,7 @@ public class HomePage_PF {
 			}
 	}
 	public void validateWarningUserNotLoggedIn(String expectedWarning) {
-		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		 String actualWarningMsg = text_UserNotLoggedInWarning.getText();
 		  
 		  assertEquals(expectedWarning, actualWarningMsg);

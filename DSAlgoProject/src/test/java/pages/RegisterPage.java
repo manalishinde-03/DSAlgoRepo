@@ -1,4 +1,4 @@
-	package pageFactory;
+	package pages;
 
 import static org.testng.Assert.assertEquals;
 
@@ -15,14 +15,14 @@ import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-import pageFactory.HomePage_PF;
+import pages.HomePage;
 
-public class RegisterPage_PF {
+public class RegisterPage {
 	
 	
 	WebDriver driver;
 	
-	HomePage_PF homePage;
+	HomePage homePage;
 	
 	@FindBy(xpath ="//input[@name='username']" )
 	WebElement txt_username_register;
@@ -42,26 +42,32 @@ public class RegisterPage_PF {
 	@FindBy(xpath ="//div[@class='alert alert-primary']" )
 	WebElement text_errorMsg;
 	
+	@FindBy(xpath ="//div[@class='alert alert-primary']" )
+	WebElement text_successMsg;
+	
 	@FindBy(linkText ="Register")
 	WebElement link_Register;
 	
 	
-	public RegisterPage_PF(WebDriver driver) {
+	public RegisterPage(WebDriver driver) {
 		
 		this.driver=driver;
 		PageFactory.initElements(driver,this);
 	}
-
-	
-	
-	public void validateUserLandedOnHomePage() {
-		  driver.getPageSource().contains("NumpyNinja");
-		    System.out.println("User landed on Home page!");
+	public void enterUsername(String username) {
+		txt_username_register.sendKeys(username);
 	}
 	
+	public void enterPassword(String password) {
+		txt_password_register.sendKeys(password);
+	}
 	
-	public void clickRegister() {
-		homePage.clickRegister();
+	public void enterPasswordConfirmation(String passwordConfirm) {
+		txt_passwordConfirm.sendKeys(passwordConfirm);
+	}
+	
+	public void clickRegisterBtn() {
+		btn_register.click();
 	}
 
 
